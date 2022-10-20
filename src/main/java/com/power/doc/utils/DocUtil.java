@@ -22,31 +22,74 @@
  */
 package com.power.doc.utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.Stack;
+import java.util.UUID;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 import com.mifmif.common.regex.Generex;
-import com.power.common.util.*;
-import com.power.doc.constants.*;
+import com.power.common.util.CollectionUtil;
+import com.power.common.util.DateTimeUtil;
+import com.power.common.util.EnumUtil;
+import com.power.common.util.IDCardUtil;
+import com.power.common.util.RandomUtil;
+import com.power.common.util.StringUtil;
+import com.power.doc.constants.DocAnnotationConstants;
+import com.power.doc.constants.DocGlobalConstants;
+import com.power.doc.constants.DocTags;
+import com.power.doc.constants.JAXRSAnnotations;
+import com.power.doc.constants.JakartaJaxrsAnnotations;
 import com.power.doc.extension.dict.DictionaryValuesResolver;
-import com.power.doc.model.*;
+import com.power.doc.model.ApiConfig;
+import com.power.doc.model.ApiDataDictionary;
+import com.power.doc.model.ApiDocDict;
+import com.power.doc.model.ApiErrorCode;
+import com.power.doc.model.ApiErrorCodeDictionary;
+import com.power.doc.model.ApiReqParam;
+import com.power.doc.model.DataDict;
+import com.power.doc.model.DocJavaField;
+import com.power.doc.model.FormData;
+import com.power.doc.model.SystemPlaceholders;
 import com.power.doc.model.request.RequestMapping;
 import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.*;
+import com.thoughtworks.qdox.model.DocletTag;
+import com.thoughtworks.qdox.model.JavaAnnotation;
+import com.thoughtworks.qdox.model.JavaClass;
+import com.thoughtworks.qdox.model.JavaField;
+import com.thoughtworks.qdox.model.JavaMethod;
 import com.thoughtworks.qdox.model.expression.Add;
 import com.thoughtworks.qdox.model.expression.AnnotationValue;
 import com.thoughtworks.qdox.model.expression.Expression;
 import com.thoughtworks.qdox.model.expression.FieldRef;
-import net.datafaker.Faker;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import net.datafaker.Faker;
 
 import static com.power.doc.constants.DocGlobalConstants.JSON_CONTENT_TYPE;
 import static com.power.doc.constants.DocGlobalConstants.NO_COMMENTS_FOUND;
-import static com.power.doc.model.SystemPlaceholders.*;
+import static com.power.doc.model.SystemPlaceholders.PLACEHOLDER_PREFIX;
+import static com.power.doc.model.SystemPlaceholders.PLACEHOLDER_SUFFIX;
+import static com.power.doc.model.SystemPlaceholders.SIMPLE_PREFIX;
+import static com.power.doc.model.SystemPlaceholders.hasSystemProperties;
 
 /**
  * Description:
@@ -232,7 +275,7 @@ public class DocUtil {
      * @return formatted string
      */
     public static String formatAndRemove(String str, Map<String, String> values) {
-        if (SystemPlaceholders.hasSystemProperties(str)) {
+        if (hasSystemProperties(str)) {
             str = DocUtil.delPropertiesUrl(str, new HashSet<>());
         }
         if (str.contains(":")) {
@@ -242,7 +285,6 @@ public class DocUtil {
                 if (pathParam.contains(":")) {
                     int length = pathParam.length();
                     String reg = pathParam.substring(pathParam.indexOf(":") + 1, length - 1);
-
                     Generex generex = new Generex(reg);
                     // Generate random String
                     String randomStr = generex.random();
@@ -281,7 +323,7 @@ public class DocUtil {
      * @return String
      */
     public static String formatPathUrl(String str) {
-        if (SystemPlaceholders.hasSystemProperties(str)) {
+        if (hasSystemProperties(str)) {
             str = DocUtil.delPropertiesUrl(str, new HashSet<>());
         }
         if (!str.contains(":")) {
@@ -290,6 +332,9 @@ public class DocUtil {
         String[] strArr = str.split("/");
         for (int i = 0; i < strArr.length; i++) {
             String pathParam = strArr[i];
+            if (pathParam.startsWith("http:")||pathParam.startsWith("https")) {
+                continue;
+            }
             if (pathParam.contains(":")) {
                 strArr[i] = pathParam.substring(0, pathParam.indexOf(":")) + "}";
             }
@@ -390,8 +435,8 @@ public class DocUtil {
             String value = docletTag.getValue();
             if (StringUtil.isEmpty(value) && StringUtil.isNotEmpty(className)) {
                 throw new RuntimeException("ERROR: #" + javaMethod.getName()
-                        + "() - bad @" + tagName + " javadoc from " + javaMethod.getDeclaringClass()
-                        .getCanonicalName() + ", This is an invalid comment.");
+                    + "() - bad @" + tagName + " javadoc from " + javaMethod.getDeclaringClass()
+                    .getCanonicalName() + ", This is an invalid comment.");
             }
             if (DocTags.PARAM.equals(tagName)) {
                 String pName = value;
@@ -404,7 +449,7 @@ public class DocUtil {
                 }
                 if ("|".equals(StringUtil.trim(pValue)) && StringUtil.isNotEmpty(className)) {
                     throw new RuntimeException("ERROR: An invalid comment was written [@" + tagName + " |]," +
-                            "Please @see " + javaMethod.getDeclaringClass().getCanonicalName() + "." + javaMethod.getName() + "()");
+                        "Please @see " + javaMethod.getDeclaringClass().getCanonicalName() + "." + javaMethod.getName() + "()");
                 }
                 paramTagMap.put(pName, pValue);
             } else {
@@ -440,7 +485,7 @@ public class DocUtil {
             paramTags = docJavaField.getDocletTags();
         }
         return paramTags.stream().collect(Collectors.toMap(DocletTag::getName, DocletTag::getValue,
-                (key1, key2) -> key1 + "," + key2));
+            (key1, key2) -> key1 + "," + key2));
     }
 
     /**
@@ -630,7 +675,7 @@ public class DocUtil {
             return "";
         }
         return comment.replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;");
+            .replaceAll(">", "&gt;");
     }
 
     /**
@@ -755,7 +800,7 @@ public class DocUtil {
                                 continue;
                             }
                             List<ApiErrorCode> enumDictionaryList = EnumUtil.getEnumInformation(enumClass, dictionary.getCodeField(),
-                                    dictionary.getDescField());
+                                dictionary.getDescField());
                             errorCodeList.addAll(enumDictionaryList);
                         }
 
@@ -765,7 +810,7 @@ public class DocUtil {
                             continue;
                         }
                         List<ApiErrorCode> enumDictionaryList = EnumUtil.getEnumInformation(clzz, dictionary.getCodeField(),
-                                dictionary.getDescField());
+                            dictionary.getDescField());
                         errorCodeList.addAll(enumDictionaryList);
                     }
 
@@ -819,9 +864,10 @@ public class DocUtil {
                         ApiDocDict apiDocDict = new ApiDocDict();
                         apiDocDict.setOrder(order++);
                         apiDocDict.setTitle(javaClass.getComment());
-                        apiDocDict.setDescription(DocUtil.getEscapeAndCleanComment(Optional.ofNullable(apiNoteTag).map(DocletTag::getValue).orElse(StringUtil.EMPTY)));
+                        apiDocDict.setDescription(
+                            DocUtil.getEscapeAndCleanComment(Optional.ofNullable(apiNoteTag).map(DocletTag::getValue).orElse(StringUtil.EMPTY)));
                         List<DataDict> enumDictionaryList = EnumUtil.getEnumInformation(enumClass, apiDataDictionary.getCodeField(),
-                                apiDataDictionary.getDescField());
+                            apiDataDictionary.getDescField());
                         apiDocDict.setDataDictList(enumDictionaryList);
                         apiDocDictList.add(apiDocDict);
                     }
@@ -835,12 +881,13 @@ public class DocUtil {
                         continue;
                     }
                     DocletTag apiNoteTag = javaClass.getTagByName(DocTags.API_NOTE);
-                    apiDocDict.setDescription(DocUtil.getEscapeAndCleanComment(Optional.ofNullable(apiNoteTag).map(DocletTag::getValue).orElse(StringUtil.EMPTY)));
+                    apiDocDict.setDescription(
+                        DocUtil.getEscapeAndCleanComment(Optional.ofNullable(apiNoteTag).map(DocletTag::getValue).orElse(StringUtil.EMPTY)));
                     if (apiDataDictionary.getTitle() == null) {
                         apiDocDict.setTitle(javaClass.getComment());
                     }
                     List<DataDict> enumDictionaryList = EnumUtil.getEnumInformation(clazz, apiDataDictionary.getCodeField(),
-                            apiDataDictionary.getDescField());
+                        apiDataDictionary.getDescField());
                     if (!clazz.isEnum()) {
                         throw new RuntimeException(clazz.getCanonicalName() + " is not an enum class.");
                     }
@@ -889,10 +936,10 @@ public class DocUtil {
 
     public static String handleContentType(String mediaType, JavaAnnotation annotation, String annotationName) {
         if (JakartaJaxrsAnnotations.JAX_PRODUCES_FULLY.equals(annotationName)
-                || JAXRSAnnotations.JAX_PRODUCES_FULLY.equals(annotationName)) {
+            || JAXRSAnnotations.JAX_PRODUCES_FULLY.equals(annotationName)) {
             String annotationValue = StringUtil.removeQuotes(DocUtil.getRequestHeaderValue(annotation));
             if ("MediaType.APPLICATION_JSON".equals(annotationValue) || "application/json".equals(annotationValue)
-                    || "MediaType.TEXT_PLAIN".equals(annotationValue) || "text/plain".equals(annotationValue)) {
+                || "MediaType.TEXT_PLAIN".equals(annotationValue) || "text/plain".equals(annotationValue)) {
                 mediaType = JSON_CONTENT_TYPE;
             }
         }
@@ -901,11 +948,11 @@ public class DocUtil {
 
     public static boolean filterPath(RequestMapping requestMapping, ApiReqParam apiReqHeader) {
         if (StringUtil.isEmpty(apiReqHeader.getPathPatterns())
-                && StringUtil.isEmpty(apiReqHeader.getExcludePathPatterns())) {
+            && StringUtil.isEmpty(apiReqHeader.getExcludePathPatterns())) {
             return true;
         }
         return DocPathUtil.matches(requestMapping.getShortUrl(), apiReqHeader.getPathPatterns()
-                , apiReqHeader.getExcludePathPatterns());
+            , apiReqHeader.getExcludePathPatterns());
 
     }
 
@@ -943,7 +990,7 @@ public class DocUtil {
                 }
                 if (!visitedPlaceholders.add(originalPlaceholder)) {
                     throw new IllegalArgumentException(
-                            "Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
+                        "Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
                 }
                 // Recursive invocation, parsing placeholders contained in the placeholder key.
                 placeholder = delPropertiesUrl(placeholder, visitedPlaceholders);

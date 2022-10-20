@@ -43,6 +43,32 @@ public class DocJavaMethod {
 
     private boolean download;
 
+    /**
+     * mark page
+     */
+    private String page = "";
+
+    /**
+     * api group
+     */
+    private String group;
+
+    private String author;
+
+    /**
+     * method description
+     */
+    private String desc;
+
+    /**
+     * detailed introduction of the method
+     */
+    private String detail;
+
+    Map<String, String> paramTagMap;
+
+    Map<String, String> paramsComments;
+
     public static DocJavaMethod builder() {
         return new DocJavaMethod();
     }
@@ -89,6 +115,69 @@ public class DocJavaMethod {
 
     public DocJavaMethod setDownload(boolean download) {
         this.download = download;
+        return this;
+    }
+
+    public Map<String, String> getParamTagMap() {
+        return paramTagMap;
+    }
+
+    public DocJavaMethod setParamTagMap(Map<String, String> paramTagMap) {
+        this.paramTagMap = paramTagMap;
+        return this;
+    }
+
+    public Map<String, String> getParamsComments() {
+        return paramsComments;
+    }
+
+    public DocJavaMethod setParamsComments(Map<String, String> paramsComments) {
+        this.paramsComments = paramsComments;
+        return this;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public DocJavaMethod setPage(String page) {
+        this.page = page;
+        return this;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public DocJavaMethod setGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public DocJavaMethod setAuthor(String author) {
+        this.author = author;
+        return this;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public DocJavaMethod setDesc(String desc) {
+        this.desc = desc;
+        return this;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public DocJavaMethod setDetail(String detail) {
+        this.detail = detail;
         return this;
     }
 }

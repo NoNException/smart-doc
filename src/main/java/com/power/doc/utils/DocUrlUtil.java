@@ -22,12 +22,12 @@
  */
 package com.power.doc.utils;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.power.common.util.StringUtil;
 import com.power.common.util.UrlUtil;
 import com.power.doc.constants.DocGlobalConstants;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * @author yu 2019/12/22.
@@ -43,11 +43,9 @@ public class DocUrlUtil {
             String base = baseUrls.get(j);
             String trimBase = Optional.ofNullable(StringUtil.trimBlank(base)).orElse(StringUtil.EMPTY);
             trimBase = trimBase.replace("[", "").replace("]", "");
-
             for (int i = 0; i < size; i++) {
                 String trimUrl = Optional.ofNullable(StringUtil.trimBlank(urls.get(i))).orElse(StringUtil.EMPTY);
-                String url = baseServer + "/" + trimBase + "/" + trimUrl
-                        .replace("[", "").replace("]", "");
+                String url = baseServer + "/" + trimBase + "/" + trimUrl;
                 sb.append(UrlUtil.simplifyUrl(url));
                 if (i < size - 1) {
                     sb.append(DocGlobalConstants.MULTI_URL_SEPARATOR);

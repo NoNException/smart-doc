@@ -20,41 +20,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.power.doc.filter;
+package com.power.doc.helper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-import com.power.doc.model.ApiReturn;
+import com.power.common.util.StringUtil;
+import com.power.doc.constants.DocTags;
+import com.power.doc.utils.DocUtil;
+import com.power.doc.utils.JavaClassValidateUtil;
 
 /**
- * @author yu 2020/4/17.
+ * @author yu3.sun on 2022/10/14
  */
-public class ReturnTypeProcessor {
+public abstract class BaseHelper {
 
-    private List<ReturnTypeFilter> filters = new ArrayList<>();
-
-    private String typeName;
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public ApiReturn process() {
-        filters.add(new WebFluxReturnFilter());
-        filters.add(new BoxReturnFilter());
-        filters.add(new DefaultReturnFilter());
-        for (ReturnTypeFilter filter : filters) {
-            ApiReturn apiReturn = filter.doFilter(typeName);
-            if (Objects.nonNull(apiReturn)) {
-                return apiReturn;
+    protected static String getFieldValueFromMock(String subTypeName, Map<String, String> tagsMap, String typeSimpleName) {
+        String fieldValue = "";
+        if (tagsMap.containsKey(DocTags.MOCK) && StringUtil.isNotEmpty(tagsMap.get(DocTags.MOCK))) {
+            fieldValue = tagsMap.get(DocTags.MOCK);
+            if (!DocUtil.javaPrimaryType(typeSimpleName)
+                && !JavaClassValidateUtil.isCollection(subTypeName)
+                && !JavaClassValidateUtil.isMap(subTypeName)
+                && !JavaClassValidateUtil.isArray(subTypeName)) {
+                fieldValue = DocUtil.handleJsonStr(fieldValue);
             }
         }
-        return null;
+        return fieldValue;
     }
 }
