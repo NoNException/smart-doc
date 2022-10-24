@@ -359,11 +359,15 @@ public class ParamsBuildHelper extends BaseHelper {
                         // hand Param
                         commonHandleParam(paramList, param, isRequired, comment + appendComment, since, strRequired);
                     } else if (JavaClassValidateUtil.isCollection(subTypeName) || JavaClassValidateUtil.isArray(subTypeName)) {
-                        param.setType("array");
+                        if (isShowJavaType) {
+                            // rpc
+                            param.setType(subTypeName);
+                        } else {
+                            param.setType("array");
+                        }
                         if (tagsMap.containsKey(DocTags.MOCK) && StringUtil.isNotEmpty(tagsMap.get(DocTags.MOCK))) {
                             param.setValue(fieldValue);
                         }
-
                         if (globGicName.length > 0 && "java.util.List".equals(fieldGicName)) {
                             // no generic, just object
                             fieldGicName = fieldGicName + "<" + DocGlobalConstants.JAVA_OBJECT_FULLY + ">";
@@ -600,7 +604,7 @@ public class ParamsBuildHelper extends BaseHelper {
             return comment;
         }
         String enumComments = javaClass.getComment();
-        if (projectBuilder.getApiConfig().getInlineEnum()) {
+        if (Boolean.TRUE.equals(projectBuilder.getApiConfig().getInlineEnum())) {
             ApiDataDictionary dataDictionary = projectBuilder.getApiConfig().getDataDictionary(javaClass.getCanonicalName());
             if (Objects.isNull(dataDictionary)) {
                 comment = comment + "<br/>[Enum values:<br/>" + JavaClassUtil.getEnumParams(javaClass) + "]";
