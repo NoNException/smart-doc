@@ -8,6 +8,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.power.doc.builder.DocxApiDocBuilder;
 import org.wickedsource.docxstamper.DocxStamper;
 import org.wickedsource.docxstamper.DocxStamperConfiguration;
 
@@ -17,7 +18,10 @@ import org.wickedsource.docxstamper.DocxStamperConfiguration;
  */
 public class DocxStampTemplateUtil {
 
-
+	public static <T> void stamp(String template, String outputFilePath, T contextRoot) throws IOException {
+		InputStream templateSteam = DocxApiDocBuilder.class.getResourceAsStream(template);
+		stamp(templateSteam,outputFilePath,contextRoot);
+	}
 	public static <T> void stamp(InputStream template, String outputFilePath, T contextRoot) throws IOException {
 		OutputStream out = getOutputStream(outputFilePath);
 		DocxStamper<T> stamper = new DocxStamper<>(new DocxStamperConfiguration());
@@ -33,8 +37,8 @@ public class DocxStampTemplateUtil {
 				Files.createFile(path);
 			}
 		}
-		catch (IOException var5) {
-			var5.printStackTrace();
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 		out = Files.newOutputStream(path);
 		return out;

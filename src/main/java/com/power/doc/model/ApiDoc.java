@@ -29,7 +29,7 @@ import java.util.Objects;
 
 import com.power.common.util.StringUtil;
 
-public class ApiDoc implements Comparable<ApiDoc> {
+public class ApiDoc extends  Doc implements Comparable<ApiDoc> {
 
     /**
      * Order of controller

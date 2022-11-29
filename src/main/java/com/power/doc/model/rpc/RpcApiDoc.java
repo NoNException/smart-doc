@@ -25,12 +25,13 @@ package com.power.doc.model.rpc;
 import java.util.List;
 import java.util.Objects;
 
+import com.power.doc.model.Doc;
 import com.power.doc.model.RpcJavaMethod;
 
 /**
  * @author yu 2020/5/16.
  */
-public class RpcApiDoc implements Comparable<RpcApiDoc> {
+public class RpcApiDoc extends Doc implements Comparable<RpcApiDoc> {
 
     /**
      * Order of controller

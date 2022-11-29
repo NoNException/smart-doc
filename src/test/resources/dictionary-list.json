@@ -1,0 +1,75 @@
+{
+  "dictList": [
+    {
+      "order": 1,
+      "title": "http状态码字典",
+      "description": "",
+      "dataDictList": [
+        {
+          "value": "200",
+          "type": "string",
+          "desc": "ok",
+          "ordinal": 0,
+          "name": "SUCCESS"
+        },
+        {
+          "value": "400",
+          "type": "string",
+          "desc": "Bad Request",
+          "ordinal": 1,
+          "name": "BAD_REQUEST"
+        },
+        {
+          "value": "401",
+          "type": "string",
+          "desc": "Unauthorized",
+          "ordinal": 2,
+          "name": "UNAUTHORIZED"
+        },
+        {
+          "value": "403",
+          "type": "string",
+          "desc": "Forbidden",
+          "ordinal": 3,
+          "name": "FORBIDDEN"
+        },
+        {
+          "value": "404",
+          "type": "string",
+          "desc": "Not Found",
+          "ordinal": 4,
+          "name": "NOT_FOUND"
+        },
+        {
+          "value": "415",
+          "type": "string",
+          "desc": "Unsupported Media Type",
+          "ordinal": 5,
+          "name": "UNSUPPORTED_MEDIA_TYPE"
+        },
+        {
+          "value": "500",
+          "type": "string",
+          "desc": "Internal Server Error",
+          "ordinal": 6,
+          "name": "INTERNAL_SERVER_ERROR"
+        },
+        {
+          "value": "502",
+          "type": "string",
+          "desc": "Bad Gateway",
+          "ordinal": 7,
+          "name": "BAD_GATEWAY"
+        },
+        {
+          "value": "503",
+          "type": "string",
+          "desc": "Service Unavailable",
+          "ordinal": 8,
+          "name": "SERVICE_UNAVAILABLE"
+        }
+      ]
+    }
+  ],
+  "dictListTitle": "数据字典"
+}

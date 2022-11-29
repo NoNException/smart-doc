@@ -1,0 +1,171 @@
+{
+  "order": 1,
+  "name": "FooController",
+  "alias": "FooController",
+  "tags": [],
+  "packageName": "com.smartdoc.demo.project.web.no2",
+  "list": [
+    {
+      "methodId": "ee9f2545f9f6a013777eb66407825511",
+      "name": "updateFooPojo",
+      "order": 1,
+      "desc": "更新FooPojo",
+      "detail": "更新FooPojo",
+      "serverUrl": "",
+      "url": "/foo/update/{fooInt}",
+      "path": "/foo/update/{fooInt}",
+      "type": "PUT",
+      "author": "zongzi",
+      "headers": "|global-headers|string|false|desc|-|\n|headers-not-demo-update|string|false|desc|2.5.3|\n",
+      "contentType": "application/json",
+      "requestHeaders": [
+        {
+          "name": "global-headers",
+          "type": "string",
+          "value": "kk",
+          "desc": "desc",
+          "required": false,
+          "since": "-",
+          "pathPatterns": "/**"
+        },
+        {
+          "name": "headers-not-demo-update",
+          "type": "string",
+          "value": "any string",
+          "desc": "desc",
+          "required": false,
+          "since": "2.5.3",
+          "excludePathPatterns": "/demo/update/*"
+        }
+      ],
+      "pathParams": [
+        {
+          "id": 1,
+          "field": "fooInt",
+          "type": "int32",
+          "desc": "foo pojo\u0027s id",
+          "required": true,
+          "version": "-",
+          "pid": 0,
+          "pathParam": true,
+          "queryParam": false,
+          "value": "999",
+          "hasItems": false,
+          "configParam": false,
+          "selfReferenceLoop": false
+        }
+      ],
+      "queryParams": [],
+      "requestParams": [
+        {
+          "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+          "id": 1,
+          "field": "strParam",
+          "type": "string",
+          "desc": "测试字符串对象",
+          "required": false,
+          "version": "-",
+          "pid": 0,
+          "pathParam": false,
+          "queryParam": false,
+          "value": "pz60sp",
+          "hasItems": false,
+          "maxLength": "",
+          "configParam": false,
+          "selfReferenceLoop": false
+        },
+        {
+          "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+          "id": 2,
+          "field": "intParam",
+          "type": "int32",
+          "desc": "测试int对象",
+          "required": false,
+          "version": "-",
+          "pid": 0,
+          "pathParam": false,
+          "queryParam": false,
+          "value": "374",
+          "hasItems": false,
+          "maxLength": "",
+          "configParam": false,
+          "selfReferenceLoop": false
+        }
+      ],
+      "requestUsage": "curl -X PUT -H \u0027Content-Type: application/json\u0027 -H \u0027global-headers:kk\u0027 -H \u0027headers-not-demo-update:any string\u0027 -i /foo/update/999 --data \u0027{\n  \"strParam\": \"mr1wfi\",\n  \"intParam\": 991\n}\u0027",
+      "requestExample": {
+        "jsonBody": "{\n  \"strParam\": \"mr1wfi\",\n  \"intParam\": 991\n}",
+        "exampleBody": "curl -X PUT -H \u0027Content-Type: application/json\u0027 -H \u0027global-headers:kk\u0027 -H \u0027headers-not-demo-update:any string\u0027 -i /foo/update/999 --data \u0027{\n  \"strParam\": \"mr1wfi\",\n  \"intParam\": 991\n}\u0027",
+        "url": "/foo/update/999",
+        "formDataList": [],
+        "json": true
+      },
+      "responseUsage": "{\n  \"code\": 590,\n  \"t\": 906,\n  \"message\": \"success\"\n}",
+      "responseParams": [
+        {
+          "className": "com.smartdoc.demo.project.api.constants.ResponseMessage\u003cjava.lang.Integer\u003e",
+          "id": 1,
+          "field": "code",
+          "type": "int32",
+          "desc": "响应编码",
+          "required": false,
+          "version": "-",
+          "pid": 0,
+          "pathParam": false,
+          "queryParam": false,
+          "value": "836",
+          "hasItems": false,
+          "maxLength": "",
+          "configParam": false,
+          "selfReferenceLoop": false
+        },
+        {
+          "className": "com.smartdoc.demo.project.api.constants.ResponseMessage\u003cjava.lang.Integer\u003e",
+          "id": 2,
+          "field": "t",
+          "type": "int32",
+          "desc": "数据实体",
+          "required": false,
+          "version": "-",
+          "pid": 0,
+          "pathParam": false,
+          "queryParam": false,
+          "hasItems": false,
+          "maxLength": "",
+          "configParam": false,
+          "selfReferenceLoop": false
+        },
+        {
+          "className": "com.smartdoc.demo.project.api.constants.ResponseMessage\u003cjava.lang.Integer\u003e",
+          "id": 3,
+          "field": "message",
+          "type": "string",
+          "desc": "描述信息",
+          "required": false,
+          "version": "-",
+          "pid": 0,
+          "pathParam": false,
+          "queryParam": false,
+          "value": "\"success\"",
+          "hasItems": false,
+          "maxLength": "",
+          "configParam": false,
+          "selfReferenceLoop": false
+        }
+      ],
+      "deprecated": false,
+      "group": "",
+      "download": false,
+      "page": "",
+      "isRequestArray": 0,
+      "requestArrayType": "integer",
+      "isResponseArray": 0,
+      "responseArrayType": "integer",
+      "tags": []
+    }
+  ],
+  "desc": "测试控制类",
+  "author": "zongzi",
+  "isFolder": true,
+  "childrenApiDocs": []
+}

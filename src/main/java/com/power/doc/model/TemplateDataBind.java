@@ -5,6 +5,9 @@ import java.util.List;
 import com.power.doc.model.rpc.RpcApiDependency;
 import com.power.doc.model.rpc.RpcApiDoc;
 
+/**
+ * template data bind object
+ */
 public class TemplateDataBind {
 	private String desc;
 	private String name;
@@ -39,7 +42,28 @@ public class TemplateDataBind {
 	private String alias;
 	private List<RpcApiDoc> directoryTree;
 	private String highlightCssLink;
+	private String rpcConfigConfigContent;
+
 	private String css_cdn;
+
+	public String getRpcConfigConfigContent() {
+		return rpcConfigConfigContent;
+	}
+
+	public void setRpcConfigConfigContent(String rpcConfigConfigContent) {
+		this.rpcConfigConfigContent = rpcConfigConfigContent;
+	}
+	/**
+	 * api list for rpc ;
+	 */
+	private List<RpcApiDoc> rpcApiDocList;
+
+	public List<RpcApiDoc> getRpcApiDocList() {
+		return rpcApiDocList;
+	}
+
+	public TemplateDataBind() {
+	}
 
 	public String getDesc() {
 		return desc;
@@ -71,6 +95,10 @@ public class TemplateDataBind {
 
 	public void setApiDocList(List<ApiDoc> apiDocList) {
 		this.apiDocList = apiDocList;
+	}
+
+	public void setRpcApiDocList(List<RpcApiDoc> rpcApiDocList) {
+		this.rpcApiDocList = rpcApiDocList;
 	}
 
 	public Boolean getApiDocListOnlyHasDefaultGroup() {

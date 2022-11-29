@@ -55,11 +55,10 @@ public interface DocGlobalConstants {
     String HTML_API_DOC_TPL = "HtmlApiDoc.html";
 
     String ERROR_CODE_LIST_MD_TPL = "ErrorCodeList.md";
-    String ERROR_CODE_LIST_WORD_TPL = "ErrorCodeList.docx";
+    String ERROR_CODE_LIST_DOCX_TPL = "ErrorCodeList.docx";
     String ERROR_CODE_LIST_ADOC_TPL = "ErrorCodeList.adoc";
 
     String ERROR_CODE_LIST_MD = "ErrorCodeList.md";
-    String ERROR_CODE_LIST_WORD = "ErrorCodeList.docx";
 
     String ERROR_CODE_LIST_ADOC = "ErrorCodeList.adoc";
 

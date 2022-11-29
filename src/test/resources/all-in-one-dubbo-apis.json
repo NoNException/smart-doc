@@ -1,0 +1,753 @@
+{
+  "errorCodeList": [
+    {
+      "value": "200",
+      "type": "string",
+      "desc": "ok",
+      "ordinal": 0,
+      "name": "SUCCESS"
+    },
+    {
+      "value": "400",
+      "type": "string",
+      "desc": "Bad Request",
+      "ordinal": 1,
+      "name": "BAD_REQUEST"
+    },
+    {
+      "value": "401",
+      "type": "string",
+      "desc": "Unauthorized",
+      "ordinal": 2,
+      "name": "UNAUTHORIZED"
+    },
+    {
+      "value": "403",
+      "type": "string",
+      "desc": "Forbidden",
+      "ordinal": 3,
+      "name": "FORBIDDEN"
+    },
+    {
+      "value": "404",
+      "type": "string",
+      "desc": "Not Found",
+      "ordinal": 4,
+      "name": "NOT_FOUND"
+    },
+    {
+      "value": "415",
+      "type": "string",
+      "desc": "Unsupported Media Type",
+      "ordinal": 5,
+      "name": "UNSUPPORTED_MEDIA_TYPE"
+    },
+    {
+      "value": "500",
+      "type": "string",
+      "desc": "Internal Server Error",
+      "ordinal": 6,
+      "name": "INTERNAL_SERVER_ERROR"
+    },
+    {
+      "value": "502",
+      "type": "string",
+      "desc": "Bad Gateway",
+      "ordinal": 7,
+      "name": "BAD_GATEWAY"
+    },
+    {
+      "value": "503",
+      "type": "string",
+      "desc": "Service Unavailable",
+      "ordinal": 8,
+      "name": "SERVICE_UNAVAILABLE"
+    }
+  ],
+  "revisionLogList": [
+    {
+      "version": "v2022-11-29 17:02:26",
+      "status": "auto",
+      "author": "@zongzi",
+      "revisionTime": "2022-11-29 17:02:26",
+      "remarks": "Created by smart-doc"
+    }
+  ],
+  "errorListTitle": "错误码列表",
+  "createTime": "2022-11-29 17:02:33",
+  "projectName": "dubbo-svc-1",
+  "dictList": [
+    {
+      "order": 1,
+      "title": "http状态码字典",
+      "description": "",
+      "dataDictList": [
+        {
+          "value": "200",
+          "type": "string",
+          "desc": "ok",
+          "ordinal": 0,
+          "name": "SUCCESS"
+        },
+        {
+          "value": "400",
+          "type": "string",
+          "desc": "Bad Request",
+          "ordinal": 1,
+          "name": "BAD_REQUEST"
+        },
+        {
+          "value": "401",
+          "type": "string",
+          "desc": "Unauthorized",
+          "ordinal": 2,
+          "name": "UNAUTHORIZED"
+        },
+        {
+          "value": "403",
+          "type": "string",
+          "desc": "Forbidden",
+          "ordinal": 3,
+          "name": "FORBIDDEN"
+        },
+        {
+          "value": "404",
+          "type": "string",
+          "desc": "Not Found",
+          "ordinal": 4,
+          "name": "NOT_FOUND"
+        },
+        {
+          "value": "415",
+          "type": "string",
+          "desc": "Unsupported Media Type",
+          "ordinal": 5,
+          "name": "UNSUPPORTED_MEDIA_TYPE"
+        },
+        {
+          "value": "500",
+          "type": "string",
+          "desc": "Internal Server Error",
+          "ordinal": 6,
+          "name": "INTERNAL_SERVER_ERROR"
+        },
+        {
+          "value": "502",
+          "type": "string",
+          "desc": "Bad Gateway",
+          "ordinal": 7,
+          "name": "BAD_GATEWAY"
+        },
+        {
+          "value": "503",
+          "type": "string",
+          "desc": "Service Unavailable",
+          "ordinal": 8,
+          "name": "SERVICE_UNAVAILABLE"
+        }
+      ]
+    }
+  ],
+  "dictListTitle": "数据字典",
+  "version": "1669712553325",
+  "rpcApiDocList": [
+    {
+      "order": 1,
+      "name": "com.smartdoc.demo.project.api.service.Foo2Service",
+      "shortName": "com.smartdoc.demo.project.api.service.Foo2Service",
+      "alias": "com.smartdoc.demo.project.api.service.Foo2Service",
+      "desc": "Foo2Service \u0027s implements",
+      "protocol": "dubbo",
+      "author": "zongzi",
+      "uri": "/com.smartdoc.demo.project.api.service.Foo2Service",
+      "list": [
+        {
+          "methodId": "715f008dcdcb04314725be3930b7b3f6",
+          "name": "findFooInFoo2",
+          "order": 1,
+          "desc": "",
+          "methodDefinition": "FooPojo findFooInFoo2(FooPojo fooPojo)",
+          "escapeMethodDefinition": "FooPojo findFooInFoo2(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"4o0m02\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "360",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"qovfqz\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "816",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        },
+        {
+          "methodId": "22353c8502e0bc002a2ccf4c712aa7df",
+          "name": "addFooPojoInFoo2",
+          "order": 2,
+          "desc": "",
+          "methodDefinition": "void addFooPojoInFoo2(FooPojo fooPojo)",
+          "escapeMethodDefinition": "void addFooPojoInFoo2(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"upcgeo\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "327",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [],
+          "deprecated": false
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "name": "com.smartdoc.demo.project.api.service.FooService",
+      "shortName": "com.smartdoc.demo.project.api.service.FooService",
+      "alias": "com.smartdoc.demo.project.api.service.FooService",
+      "desc": "Foo 测试服务",
+      "protocol": "dubbo",
+      "author": "",
+      "uri": "/com.smartdoc.demo.project.api.service.FooService",
+      "list": [
+        {
+          "methodId": "06cb405590f2b30c0fc27a864967282c",
+          "name": "findFoo",
+          "order": 1,
+          "desc": "",
+          "methodDefinition": "FooPojo findFoo(FooPojo fooPojo)",
+          "escapeMethodDefinition": "FooPojo findFoo(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"4umo4g\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "553",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"ar8ewc\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "24",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        },
+        {
+          "methodId": "b2bdd4869ef9c719a651b2d4bf5f4b81",
+          "name": "addFooPojo",
+          "order": 2,
+          "desc": "",
+          "methodDefinition": "void addFooPojo(FooPojo fooPojo)",
+          "escapeMethodDefinition": "void addFooPojo(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"68jl5o\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "294",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [],
+          "deprecated": false
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "name": "com.smartdoc.demo.project.api.service.DemoService",
+      "shortName": "com.smartdoc.demo.project.api.service.DemoService",
+      "alias": "com.smartdoc.demo.project.api.service.DemoService",
+      "desc": "测试Dubbo服务实现类",
+      "protocol": "dubbo",
+      "author": "zongzi",
+      "uri": "/com.smartdoc.demo.project.api.service.DemoService",
+      "list": [
+        {
+          "methodId": "6ec28c67167e8aa788184f472b864413",
+          "name": "updateFooPojo",
+          "order": 1,
+          "desc": "",
+          "methodDefinition": "FooPojo updateFooPojo(FooPojo fooPojo)",
+          "escapeMethodDefinition": "FooPojo updateFooPojo(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"0wetgn\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "393",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"pkn7wh\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "383",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        },
+        {
+          "methodId": "125046b856784c833ca7c7fc4a52382c",
+          "name": "findFooPojos",
+          "order": 2,
+          "desc": "",
+          "methodDefinition": "List\u003cFooPojo\u003e findFooPojos(String fooString)",
+          "escapeMethodDefinition": "List\u0026lt;FooPojo\u0026gt; findFooPojos(String fooString)",
+          "detail": "",
+          "requestParams": [
+            {
+              "id": 1,
+              "field": "fooString",
+              "type": "String",
+              "desc": "No comments found.",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "cptar0",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"a4kbtv\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "402",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "name": "com.smartdoc.demo.project.api.service.Demo2Service",
+      "shortName": "com.smartdoc.demo.project.api.service.Demo2Service",
+      "alias": "com.smartdoc.demo.project.api.service.Demo2Service",
+      "desc": "测试Dubbo服务实现类",
+      "protocol": "dubbo",
+      "author": "zongzi",
+      "uri": "/com.smartdoc.demo.project.api.service.Demo2Service",
+      "list": [
+        {
+          "methodId": "dba41492aff7ef72018f689dea32f890",
+          "name": "updateFooPojoInDemo2",
+          "order": 1,
+          "desc": "",
+          "methodDefinition": "FooPojo updateFooPojoInDemo2(FooPojo fooPojo)",
+          "escapeMethodDefinition": "FooPojo updateFooPojoInDemo2(FooPojo fooPojo)",
+          "detail": "",
+          "requestParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "fooPojo.strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"vyawu7\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "fooPojo.intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "315",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"akg61x\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "44",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        },
+        {
+          "methodId": "8a5ab44d97620831c2320a0577515428",
+          "name": "findFooPojosInDemo2",
+          "order": 2,
+          "desc": "",
+          "methodDefinition": "List\u003cFooPojo\u003e findFooPojosInDemo2(String fooString)",
+          "escapeMethodDefinition": "List\u0026lt;FooPojo\u0026gt; findFooPojosInDemo2(String fooString)",
+          "detail": "",
+          "requestParams": [
+            {
+              "id": 1,
+              "field": "fooString",
+              "type": "String",
+              "desc": "No comments found.",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "bvpwey",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "responseParams": [
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 1,
+              "field": "strParam",
+              "type": "java.lang.String",
+              "desc": "测试字符串对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "\"l3wzu9\"",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            },
+            {
+              "className": "com.smartdoc.demo.project.api.pojo.FooPojo",
+              "id": 2,
+              "field": "intParam",
+              "type": "java.lang.Integer",
+              "desc": "测试int对象",
+              "required": false,
+              "version": "-",
+              "pid": 0,
+              "pathParam": false,
+              "queryParam": false,
+              "value": "929",
+              "hasItems": false,
+              "maxLength": "",
+              "configParam": false,
+              "selfReferenceLoop": false
+            }
+          ],
+          "deprecated": false
+        }
+      ]
+    }
+  ]
+}
