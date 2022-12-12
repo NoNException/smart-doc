@@ -1,11 +1,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!--- to check !-->
-    <parent>
-        <groupId>com.temp.common</groupId>
-        <artifactId>commom-aggregator</artifactId>
-        <version>0.0.0</version>
-    </parent>
+
     <groupId>com.github.shalousun</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>smart-doc</artifactId>
