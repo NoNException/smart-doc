@@ -12,9 +12,11 @@ import com.google.gson.Gson;
 import com.power.doc.builder.DocxApiDocBuilder;
 import com.power.doc.model.ApiDoc;
 import com.power.doc.model.TemplateDataBind;
+import com.power.doc.model.rpc.RpcApiDoc;
 import com.power.doc.utils.DocxStampTemplateUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -57,12 +59,15 @@ public class DocxStamperTemplateUtilsTest {
 
 	private static Stream<Arguments> renderParamsProvider() {
 		return Stream.of(
-				// Arguments.of("/template/AllInOne.docx", "target/temp/allInOne-", "all-in-one-apis.json", TemplateDataBind.class),
-				// Arguments.of("/template/ApiDoc.docx", "target/temp/ApiDoc-Apis-", "apis.json", ApiDoc.class),
-				// Arguments.of("/template/ErrorCodeList.docx", "target/temp/ApiDoc-Error-", "error-code-list.json", TemplateDataBind.class),
-				// Arguments.of("/template/Dictionary.docx", "target/temp/ApiDoc-Dictionary-", "dictionary-list.json", TemplateDataBind.class),
-				Arguments.of("/template/dubbo/DubboAllInOne.docx", "target/temp/dubbo-all-in-one-", "all-in-one-dubbo-apis.json", TemplateDataBind.class)
+				// Arguments.of("/template/AllInOne.docx", "target/temp/all-in-one-", "all-in-one-apis.json", TemplateDataBind.class),
+				// Arguments.of("/template/ApiDoc.docx", "target/temp/apis-", "apis.json", ApiDoc.class),
+				// Arguments.of("/template/ErrorCodeList.docx", "target/temp/error-", "error-code-list.json", TemplateDataBind.class),
+				// Arguments.of("/template/Dictionary.docx", "target/temp/dictionary-", "dictionary-list.json", TemplateDataBind.class),
+				Arguments.of("/template/dubbo/DubboAllInOne.docx", "target/temp/all-in-one-dubbo-", "all-in-one-dubbo-apis.json", TemplateDataBind.class),
+				Arguments.of("/template/dubbo/Dubbo.docx", "target/temp/dubbo-apis-", "apis-dubbo.json", RpcApiDoc.class)
 
 		);
 	}
+
+
 }

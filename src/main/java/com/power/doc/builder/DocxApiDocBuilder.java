@@ -1,6 +1,7 @@
 package com.power.doc.builder;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,9 +97,8 @@ public class DocxApiDocBuilder extends AbstractDocxBuilder {
 				templateDataBind.setDictListOrder(++codeIndex);
 			}
 
-			log.debug(new Gson().toJson(templateDataBind));
 			String outputFilePath = config.getOutPath() + FILE_SEPARATOR + allInOneDocName("html-");
-			DocxStampTemplateUtil.stamp("/template/AllInOne.docx", outputFilePath, templateDataBind);
+			DocxStampTemplateUtil.stamp("/template/AllInOne.docx", outputFilePath, formatData(templateDataBind));
 		}
 		catch (IOException e) {
 			log.warn("[Error] when create render all in one apis！", e);
@@ -108,6 +108,11 @@ public class DocxApiDocBuilder extends AbstractDocxBuilder {
 	@Override
 	protected String provideNameForEachDoc(Doc doc) {
 		return ((ApiDoc) doc).getName();
+	}
+
+	@Override
+	protected String provideTemplateFile() {
+		return "/template/ApiDoc.docx";
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import com.google.gson.Gson;
 import com.power.common.util.CollectionUtil;
 import com.power.common.util.DateTimeUtil;
@@ -85,14 +86,14 @@ public abstract class AbstractDocxBuilder {
 			log.debug("dictionary:" + new Gson().toJson(errorCodeList));
 			String outputFilePath = config.getOutPath() + FILE_SEPARATOR + "Dictionary.docx";
 			templateDataBind.setDictList(directories);
-			DocxStampTemplateUtil.stamp("/template/Dictionary.docx", outputFilePath, templateDataBind);
+			DocxStampTemplateUtil.stamp("/template/Dictionary.docx", outputFilePath, formatData(templateDataBind));
 		}
 		// handle error lists
 		if (CollectionUtil.isNotEmpty(errorCodeList)) {
 			log.debug("errorCode:" + new Gson().toJson(errorCodeList));
 			templateDataBind.setErrorCodeList(errorCodeList);
 			String outputFilePath = config.getOutPath() + FILE_SEPARATOR + "ErrorCodeList.docx";
-			DocxStampTemplateUtil.stamp("/template/ErrorCodeList.doc", outputFilePath, templateDataBind);
+			DocxStampTemplateUtil.stamp("/template/ErrorCodeList.docx", outputFilePath, formatData(templateDataBind));
 		}
 	}
 
@@ -106,13 +107,15 @@ public abstract class AbstractDocxBuilder {
 			String outPutFileName = provideNameForEachDoc(doc);
 			try {
 				String outputFilePath = config.getOutPath() + FILE_SEPARATOR + outPutFileName + API_EXTENSION;
-				DocxStampTemplateUtil.stamp("/template/ApiDoc.docx", outputFilePath, doc);
+				String templateFile = provideTemplateFile();
+				DocxStampTemplateUtil.stamp(templateFile, outputFilePath, formatData(doc));
 			}
 			catch (IOException e) {
 				log.warn(String.format("[Error] when create render api:%s！", outPutFileName), e);
 			}
 		}
 	}
+
 
 	public static void setDirectoryLanguageVariable(TemplateDataBind templateDataBind, ApiConfig config) {
 		if (Objects.isNull(config.getLanguage())) {
@@ -130,6 +133,18 @@ public abstract class AbstractDocxBuilder {
 	protected String allInOneDocName(String prefix) {
 		String version = config.isCoverOld() ? "" : "-V" + DateTimeUtil.long2Str(System.currentTimeMillis(), DATE_FORMAT);
 		return prefix + getDocBuilderTemplate().allInOneDocName(config, "all" + version, ".docx");
+	}
+
+	protected <T> T formatData(T t) {
+		Gson gson = new Gson();
+		String s = gson.toJson(t);
+		s = s.replace("\\n", "\\u000D").
+				replace("\\u0026nbsp;", "\\u00A0").
+				replace("\\r", "\\u000A").
+				// 将<br>替换成换行符
+						replace("\\u003cbr\\u003e", "\\u000D").
+				replace("\\u003cbr/\\u003e", "\\u000D");
+		return (T) gson.fromJson(s, t.getClass());
 	}
 
 	/**
@@ -156,4 +171,10 @@ public abstract class AbstractDocxBuilder {
 	 * @return doc file's name
 	 */
 	protected abstract String provideNameForEachDoc(Doc doc);
+
+	/**
+	 * subClass decides what kinds of template it should be when rend one .docx for each api
+	 * @return template name
+	 */
+	protected abstract String provideTemplateFile();
 }

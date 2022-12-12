@@ -3,12 +3,14 @@ package com.power.doc.builder.rpc;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.power.common.util.DateTimeUtil;
 import com.power.common.util.FileUtil;
 import com.power.doc.builder.AbstractDocxBuilder;
 import com.power.doc.builder.BaseDocBuilderTemplate;
+import com.power.doc.constants.FrameworkEnum;
 import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiDocDict;
 import com.power.doc.model.ApiErrorCode;
@@ -42,6 +44,8 @@ public class RpcDocxBuilder extends AbstractDocxBuilder {
 
 	@Override
 	public List<? extends Doc> doAnalyzeSourceCode() {
+		// rewrite the framework enum
+		getApiConfig().setFramework(FrameworkEnum.DUBBO.getFramework());
 		return ((RpcDocBuilderTemplate) getDocBuilderTemplate()).getRpcApiDoc(getApiConfig(), getJavaProjectBuilder());
 	}
 
@@ -55,9 +59,9 @@ public class RpcDocxBuilder extends AbstractDocxBuilder {
 
 			String strTime = DateTimeUtil.long2Str(now, DateTimeUtil.DATE_FORMAT_SECOND);
 			String rpcConfig = config.getRpcConsumerConfig();
-			String rpcConfigConfigContent = null;
+			String rpcConfigContent = null;
 			if (Objects.nonNull(rpcConfig)) {
-				rpcConfigConfigContent = FileUtil.getFileContent(rpcConfig);
+				rpcConfigContent = FileUtil.getFileContent(rpcConfig);
 			}
 			List<ApiErrorCode> errorCodeList = DocUtil.errorCodeDictToList(config, javaProjectBuilder);
 			TemplateDataBind templateDataBind = new TemplateDataBind();
@@ -68,14 +72,14 @@ public class RpcDocxBuilder extends AbstractDocxBuilder {
 			templateDataBind.setVersion(String.valueOf(now));
 			templateDataBind.setCreateTime(strTime);
 			templateDataBind.setProjectName(config.getProjectName());
-			templateDataBind.setRpcConfigConfigContent(rpcConfigConfigContent);
+			templateDataBind.setRpcConfigContent(rpcConfigContent);
 			setDirectoryLanguageVariable(templateDataBind, config);
 			List<ApiDocDict> apiDocDictList = DocUtil.buildDictionary(config, javaProjectBuilder);
 			templateDataBind.setDictList(apiDocDictList);
 
-			log.debug(new Gson().toJson(templateDataBind));
+
 			String outputFilePath = config.getOutPath() + FILE_SEPARATOR + allInOneDocName("rpc-");
-			DocxStampTemplateUtil.stamp("/template/dubbo/DubboAllInOne.docx", outputFilePath, templateDataBind);
+			DocxStampTemplateUtil.stamp("/template/dubbo/DubboAllInOne.docx", outputFilePath, formatData(templateDataBind));
 		}
 		catch (IOException e) {
 			log.warn("Error happens when try to build all doc in one", e);
@@ -84,8 +88,16 @@ public class RpcDocxBuilder extends AbstractDocxBuilder {
 
 	@Override
 	protected String provideNameForEachDoc(Doc doc) {
-		return ((RpcApiDoc)doc).getName();
+		RpcApiDoc rpcApiDoc = (RpcApiDoc) doc;
+		String realVersion = Optional.ofNullable(rpcApiDoc.getVersion())
+				.orElse(String.valueOf(System.currentTimeMillis()));
+		rpcApiDoc.setVersion(realVersion);
+		return rpcApiDoc.getName();
 	}
 
+	@Override
+	protected String provideTemplateFile() {
+		return "/template/dubbo/Dubbo.docx";
+	}
 
 }

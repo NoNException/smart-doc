@@ -42,16 +42,16 @@ public class TemplateDataBind {
 	private String alias;
 	private List<RpcApiDoc> directoryTree;
 	private String highlightCssLink;
-	private String rpcConfigConfigContent;
+	private String rpcConfigContent;
 
 	private String css_cdn;
 
-	public String getRpcConfigConfigContent() {
-		return rpcConfigConfigContent;
+	public String getRpcConfigContent() {
+		return rpcConfigContent;
 	}
 
-	public void setRpcConfigConfigContent(String rpcConfigConfigContent) {
-		this.rpcConfigConfigContent = rpcConfigConfigContent;
+	public void setRpcConfigContent(String rpcConfigContent) {
+		this.rpcConfigContent = rpcConfigContent;
 	}
 	/**
 	 * api list for rpc ;
